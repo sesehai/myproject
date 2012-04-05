@@ -9,10 +9,10 @@ $db = $DbManager->factory($type="mysqli", $options = false);
 
 $dsn = array(
       'phptype'  => 'mysqli',
-      'username' => 'mclient_readonly',
-      'password' => '!HY%wn&#*nse',
-      'hostspec' => '60.28.199.202',
-      'database' => 'mclient',
+      'username' => 'root',
+      'password' => '123456',
+      'hostspec' => 'localhost',
+      'database' => 'test',
       'key'      => '',
       'cert'     => '',
       'ca'       => '',
@@ -24,7 +24,7 @@ $options = array(
       'ssl' => true,
 );
 $db->connect($dsn, $persistent = false);
-$query="select * from mclient_vrsupdate limit 5";
+$query="select * from test limit 5";
 $rows = $db->simpleQuery($query);
 $rowsAry = array();
 while($db->fetchInto($rows, &$rowsAry, $fetchmode='', $rownum = null)){
