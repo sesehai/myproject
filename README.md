@@ -8,6 +8,7 @@ PHP 常用方法
 - log 日志类库
 - os 系统操作类库
 - phpdoc 文档操作类库
+- xmlrpc XML-RPC
 
 #### PHP 入门文档
 - phpstart
