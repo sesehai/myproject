@@ -21,3 +21,6 @@ PHP,Lua 常用方法
 
 #### lua 实例
 - nginx + lua 实现api代理功能
+
+#### c实例
+- mysql 操作
