@@ -7,7 +7,7 @@ use controller;
 
 class Dispatcher{
     public static $config = array(
-        'defaultController' => 'Index',
+        'defaultController' => 'IndexController',
         'defaultAction' => 'defaultAction',
         'controllerPath' => '',
         'modelPath' => '',
@@ -58,7 +58,7 @@ class Dispatcher{
         $pathInfo = isset($_SERVER['PATH_INFO']) ? trim($_SERVER['PATH_INFO'],'/') : '';
         $dispatchInfo = array();
         $tmp = explode('/', $pathInfo);
-        $dispatchInfo['controller'] = 'controller\\'.(($controller = current($tmp)) ? ucfirst($controller) : self::$config['defaultController']);
+        $dispatchInfo['controller'] = 'controller\\'.(($controller = current($tmp)) ? ucfirst($controller) . "Controller" : self::$config['defaultController']);
         $dispatchInfo['action'] = ($action = next($tmp)) ? $action . 'Action' : self::$config['defaultAction'];
 
         $params = array();

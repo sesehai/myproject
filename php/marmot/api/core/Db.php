@@ -319,15 +319,15 @@ class Db
      * @return array
      */
     public static function getSupportDriver(){
-        return PDO::getAvailableDrivers();
+        return \PDO::getAvailableDrivers();
     }
     /**
      * 获取数据库的版本信息
      * @return array
      */
     public function getDriverVersion(){
-        $name = $this->DB->getAttribute(PDO::ATTR_DRIVER_NAME);
-        return array($name=>$this->DB->getAttribute(PDO::ATTR_CLIENT_VERSION));
+        $name = $this->DB->getAttribute(\PDO::ATTR_DRIVER_NAME);
+        return array($name=>$this->DB->getAttribute(\PDO::ATTR_CLIENT_VERSION));
     }
 
     public function __get($property_name){

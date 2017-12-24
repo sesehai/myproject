@@ -7,7 +7,7 @@ $config = array(
         'dbconfig' => array(
             'host' => 'localhost',
             'port' => '3306',
-            'dbname' => 'exam',
+            'dbname' => 'phpexam',
             'username' => 'root',
             'password' => 'root',
         )

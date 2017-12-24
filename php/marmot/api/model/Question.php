@@ -8,8 +8,13 @@ use core\Model;
 class Question extends Model {
     protected $table = 'question';
 
-    public function loadList($category){
-        $result = $this->query("SELECT * FROM " . $this->getTable() . " Where `category` = ? ", array($category));
+    public function loadList(){
+        $result = $this->query("SELECT * FROM " . $this->getTable() . " ORDER BY id DESC" , array());
         return $result;
+    }
+
+    public function insert($data)
+    {
+        return parent::insert($data);
     }
 }

@@ -7,7 +7,7 @@ use core\Controller;
 use core\Request;
 use core\Response;
 
-class Index extends Controller{
+class IndexController extends Controller{
 
     public function defaultAction(){
         $arr = array('data:' => "Hello World!");
