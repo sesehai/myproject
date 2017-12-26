@@ -5,9 +5,9 @@ $config = array(
     'db' => array(
         'db_type' => 'mysql',
         'dbconfig' => array(
-            'host' => 'localhost',
+            'host' => '127.0.0.1',
             'port' => '3306',
-            'dbname' => 'phpexam',
+            'dbname' => 'marmot',
             'username' => 'root',
             'password' => 'root',
         )

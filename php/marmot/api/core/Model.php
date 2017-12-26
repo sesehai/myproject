@@ -3,12 +3,17 @@ namespace core;
 
 Class Model{
     protected $table = '';
+    protected $primaryKey = 'id';
 
     public function __construct(){
     }
 
     public function getTable(){
         return $this->table;
+    }
+
+    public function getPrimaryKey(){
+        return $this->primaryKey;
     }
 
     public function getDb($db = 'db'){
@@ -91,5 +96,37 @@ Class Model{
         $db->disConnect();
         return $result;
     }
+
+    /**
+     * 新增
+     */
+    public function addObj($objAry){
+        return $this->insert($objAry);
+    }
+
+    /**
+     * 删除
+     */
+     public function deleteObj($id){
+        $condition = " where `". $this->primaryKey ."` = ? ";
+        $valueAry = array($id);
+        return $this->delete($condition, $valueAry);
+     }
+
+     /**
+      * 更新
+      */
+     public function updateObj($objAry){
+        $condition = " where `". $this->primaryKey ."` = ? ";
+        $conditionValAry = array($id);
+        return $this->update($condition, $conditionValAry, $objAry);
+     }
+
+     /**
+      * 加载信息
+      */
+     public function getObjByPrimaryKey($id){
+        return $this->getOne("SELECT * FROM " . $this->_tableName . " where `". $this->primaryKey ."` = ? ", array($id));
+     }
 
 }
