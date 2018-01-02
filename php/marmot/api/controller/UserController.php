@@ -20,7 +20,7 @@ class UserController extends Controller{
         $usersObj = new Users();
         $record = $usersObj->loadUserByName($name);
         if(!empty($record) && $record['password'] == $password){
-            Response::json(array(), 200, "登录成功");
+            Response::json(array('ticket' => $usersObj->createToken($record)), 200, "登录成功");
         }else{
             Response::json(array(), 2000, "登录失败");
         }

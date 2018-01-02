@@ -1,5 +1,5 @@
 
-var ticket = '';
+var ticket = BlogCommon.cookie.get('ticket') || BlogCommon.UrlGet()['ticket'] || '';
 var fnSignIn = {
     signInPost: function(){
         // commit
@@ -42,6 +42,7 @@ var fnSignIn = {
             };
             BlogCommon.postRequest(data).then(function(json){
                 if(json.code == 200){
+                    BlogCommon.cookie.set('ticket', json.entity.ticket);
                     BlogCommon.showErr(
                         $('#button_sign'), 
                         {
