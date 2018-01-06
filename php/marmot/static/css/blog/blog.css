@@ -24,9 +24,32 @@
   .h5,
   h6,
   .h6 {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Athelas, STHeiti, Microsoft Yahei, serif;
     font-weight: 400;
     color: #333;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  }
+  
+  h4 {
+    font-size: 1.2rem;
+  }
+  
+  h5 {
+    font-size: 1.1rem;
+  }
+  
+  h6 {
+    font-size: 1rem;
   }
   
   /*
@@ -86,7 +109,7 @@
   }
   .blog-title {
     margin-bottom: 0;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 400;
   }
   .blog-description {
@@ -135,7 +158,7 @@
   }
   .blog-post-title {
     margin-bottom: .25rem;
-    font-size: 2.5rem;
+    font-size: 1.1rem;
   }
   .blog-post-meta {
     margin-bottom: 1.25rem;

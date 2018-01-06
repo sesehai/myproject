@@ -108,7 +108,7 @@ Class Model{
      * 删除
      */
      public function deleteObj($id){
-        $condition = " where `". $this->primaryKey ."` = ? ";
+        $condition = " `" . $this->primaryKey ."` = ? ";
         $valueAry = array($id);
         return $this->delete($condition, $valueAry);
      }
@@ -117,8 +117,9 @@ Class Model{
       * 更新
       */
      public function updateObj($objAry){
-        $condition = " where `". $this->primaryKey ."` = ? ";
-        $conditionValAry = array($id);
+        $condition = " `" . $this->primaryKey ."` = ? ";
+        $conditionValAry = array($objAry[$this->primaryKey]);
+        unset($objAry[$this->primaryKey]);
         return $this->update($condition, $conditionValAry, $objAry);
      }
 
@@ -126,7 +127,15 @@ Class Model{
       * 加载信息
       */
      public function getObjByPrimaryKey($id){
-        return $this->getOne("SELECT * FROM " . $this->_tableName . " where `". $this->primaryKey ."` = ? ", array($id));
+        return $this->getOne("SELECT * FROM " . $this->table . " where `". $this->primaryKey ."` = ? ", array($id));
+     }
+
+     public function saveObj($objAry){
+        if( isset($objAry[$this->primaryKey]) && !empty($objAry[$this->primaryKey]) ){
+            return $this->updateObj($objAry);
+        }else{
+            return $this->addObj($objAry);
+        }
      }
 
 }

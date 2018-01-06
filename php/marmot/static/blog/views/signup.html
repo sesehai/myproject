@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head_style %}
+<!-- Custom styles for this template -->
+<link href="../css/blog/blog.css" rel="stylesheet">
+<link href="../css/blog/signin.css" rel="stylesheet">
+{% endblock %}
+
+  {% block body %}
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-sm-12 blog-main">
+        <form class="form-signin">
+          <h2 class="form-signin-heading">请注册</h2>
+          <label for="inputEmail" class="sr-only">用户名</label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="用户名" required autofocus>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="密码" required>
+          <input type="text" id="email" name="email" class="form-control" placeholder="邮箱" required>
+          <button class="btn btn-lg btn-primary btn-block" type="button" id="button_sign">注册</button>
+        </form>
+      </div>
+    </div>
+  </main> <!-- /container -->
+  {% endblock %}
+
+  {% block body_js %}
+
+    <script src="../js/lib/jquery-3.2.1.js" ></script>
+    <script src="../js/lib/jquery.md5.js" ></script>
+    <script src="../js/lib/popper.min.js"></script>
+    <script src="../js/lib/bootstrap.min.js"></script>
+    <script src="../js/blog/common.js"></script>
+    <script src="../js/blog/signup.js"></script>
+  {% endblock %}

@@ -8,9 +8,11 @@ class Response{
 
     static protected $codeMsg = array(
         '2000' => '登录失败',
-        '2001' => '11',
+        '2001' => '该用户名已被注册',
         '2002' => '注册失败, 用户已存在',
+        '2003' => '未登录或登录过期！',
         '200' => '成功',
+        '300' => '失败',
     );
 
     public function __construct()

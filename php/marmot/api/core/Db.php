@@ -286,7 +286,7 @@ class Db
     public function errorMessage()
     {
         $msg = $this->DB->errorInfo();
-        throw new \Exception('数据库错误：' .'SQL:'.$this->Sql.' message:'. $msg[2]);
+        throw new \Exception('数据库错误：' .'SQL:'.$this->Sql.' message:'. var_export($msg[2], true));
     }
 
     //---------------------

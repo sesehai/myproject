@@ -1,42 +1,5 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../favicon.ico">
-
-    <title>Signin Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="../css/blog/signin.css" rel="stylesheet">
-  </head>
-
-  <body>
-
-    <div class="container">
-
-      <form class="form-signin">
-        <h2 class="form-signin-heading">请登录</h2>
-        <label for="inputEmail" class="sr-only">用户名</label>
-        <input type="text" name="name" id="name" class="form-control" placeholder="用户名" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="密码" required>
-        <button class="btn btn-lg btn-primary btn-block" type="button" id="button_sign">登录</button>
-      </form>
-
-    </div> <!-- /container -->
-    <div class="error"></div>
-
-    <script src="../js/lib/jquery-3.2.1.js" ></script>
-    <script src="../js/lib/jquery.md5.js" ></script>
-    <script src="../js/lib/popper.min.js"></script>
-    <script src="../js/lib/bootstrap.min.js"></script>
-    <script src="../js/blog/common.js"></script>
-    <script src="../js/blog/signin.js"></script>
-  </body>
-</html>
+<script src="../js/lib/nunjucks.js"></script>
+<script>
+  nunjucks.configure('/static/blog/views', { autoescape: true });
+  document.write(nunjucks.render('signin.html', {nav: 'index'})); 
+</script>

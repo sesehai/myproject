@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <main role="main" class="container" id="add_article">
+
+      <div class="row">
+
+        <div class="col-sm-10 blog-main">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">标题</th>
+                    <th scope="col">添加日期</th>
+                    <th scope="col">操作</th>
+                  </tr>
+                </thead>
+                <tbody id="rows_tbody">
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+        </div><!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-sm-auto blog-sidebar">
+         
+        </aside><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </main><!-- /.container -->
+{% endblock %}
+
+{% block body_js %}
+
+<script src="../js/lib/jquery-3.2.1.js" ></script>
+<script src="../js/lib/jquery.md5.js" ></script>
+<script src="../js/lib/popper.min.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/blog/common.js"></script>
+<script src="../js/blog/articlelist.js"></script>
+{% endblock %}

@@ -52,4 +52,15 @@ class UserController extends Controller{
             Response::json(array(), 2001, "注册失败");
         }
     }
+
+    public function checkAction(){
+        $usersObj = new Users();
+        $token = Request::header('ticket');
+        $user = $usersObj->checkToken($token);
+        if(!$user){
+            Response::json(array(), 2003, '未登录或登录过期！');
+        }else{
+            Response::json(array($user), 200, "已登录");
+        }
+    }
 }

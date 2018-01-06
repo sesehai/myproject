@@ -57,6 +57,6 @@ class Users extends Model {
             return false;
         }
 
-        return true;
+        return $user;
     }
 }

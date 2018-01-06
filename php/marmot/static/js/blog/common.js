@@ -14,6 +14,8 @@ var BlogCommon = {
     OS: navigator.userAgent.toLowerCase().indexOf('android')>-1 ? 'android' : 'ios',
     MD5KEY: '121213sad',
     REQUEST_DEFAULT_PARAMS: {},
+    TICKET: '',
+    USER: {},
     dateFormat: function(date, format) {
         format = format || 'yyyy-MM-dd hh:mm:ss';
         var o = {
@@ -89,7 +91,7 @@ var BlogCommon = {
                 }
             }},
             error: function (x, h, r) {
-                Common.showErr('网络错误，请检查您的网络连接');
+                BlogCommon.showErr('网络错误，请检查您的网络连接');
             },
             success: function (data) {
                 if(BlogCommon.DEBUG) {
