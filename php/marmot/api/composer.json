@@ -1,0 +1,12 @@
+{
+  "require": {
+    "monolog/monolog": "1.2.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "core\\": "core/",
+      "controller\\": "controller",
+      "model\\": "model"
+    }
+  }
+}

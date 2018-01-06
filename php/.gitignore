@@ -1,0 +1,6 @@
+.idea/
+log/
+vendor
+.DS_Store
+.project
+.classpath

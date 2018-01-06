@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+    <title>小测验</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../css/sticky-footer-navbar.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top nav-bg-pink">
+    <a class="navbar-brand" href="#">PHP小测验</a>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">添加试题 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="list.html">测验</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Begin page content -->
+<div class="container">
+    <div class="mt-3">
+        <h3>添加测试题目</h3>
+    </div>
+    <p class="lead">PHP 基础小测验。</p>
+    <form name="examForm">
+        <div class="form-group row">
+            <label for="title" class="col-sm-1 col-form-label">题目</label>
+            <div class="col-sm-11">
+                <textarea name="title" class="form-control" id="title" placeholder="title"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="type" class="col-sm-1 col-form-label">类型</label>
+            <div class="col-sm-11">
+                <select class="form-control form-control-lg" required="" id="type" name="type" show="类型">
+                    <option value="0">单选</option>
+                    <option value="1">多选</option>
+                    <option value="2">判断</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="type" class="col-sm-1 col-form-label">选项</label>
+            <div class="col-sm-11">
+                <div class="row">
+                    <div class="col-md-1">
+                        A.
+                        <input type="hidden" name="option" class="form-control" value="A" >
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" name="optionDesc" class="form-control" placeholder="描述">
+                    </div>
+                    <div class="col-md-2 text-md-right">
+                        是否为答案
+                    </div>
+                    <div class="col-md-1">
+                        <input type="checkbox" name="isAnswer" value="A" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">
+                        B.
+                        <input type="hidden" name="option" class="form-control" value="B" >
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" name="optionDesc" class="form-control" placeholder="描述">
+                    </div>
+                    <div class="col-md-2 text-md-right">
+                        是否为答案
+                    </div>
+                    <div class="col-md-1">
+                        <input type="checkbox" name="isAnswer"  value="B" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">
+                        C.
+                        <input type="hidden" name="option" class="form-control" value="C" >
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" name="optionDesc" class="form-control" placeholder="描述">
+                    </div>
+                    <div class="col-md-2 text-md-right">
+                        是否为答案
+                    </div>
+                    <div class="col-md-1">
+                        <input type="checkbox" name="isAnswer" value="C" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">
+                        D.
+                        <input type="hidden" name="option" class="form-control" value="D" >
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" name="optionDesc" class="form-control" placeholder="描述">
+                    </div>
+                    <div class="col-md-2 text-md-right">
+                        是否为答案
+                    </div>
+                    <div class="col-md-1">
+                        <input type="checkbox" name="isAnswer" value="D" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12 text-left">
+                <button type="button" name="saveBtn" class="btn btn-primary">保存</button>
+                <input type="reset" style="display:none;" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">PHP小测验 @ 2017</span>
+    </div>
+</footer>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="../js/jquery-3.2.1.js" ></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+<script>
+    'use strict';
+    var exam = {
+        save: function () {
+            // 获取答案
+            var answer = new Array();
+            $('form[name=examForm] input[type=checkbox][name=isAnswer]:checked').each(function(){
+                answer.push($(this).val().toLowerCase());
+            });
+            // 获取选项
+            var options = new Array();
+            var optionDesAry = $('form[name=examForm] input[name=optionDesc]');
+            $('form[name=examForm] input[name=option]').each(function (index,element) {
+                var option = {
+                    option:$(this).val(),
+                    optionDesc: optionDesAry[index] !== undefined ? $(optionDesAry[index]).val() : ''
+                };
+                options.push(option);
+            });
+            // 组装数据
+            var dataObj = {
+                title: $('form[name=examForm] textarea[name=title]').val(),
+                type: $('form[name=examForm] select[name=type]').val(),
+                options: options,
+                answer: answer.join(',')
+            };
+            var url = "/api/question/save";
+            $.ajax(url,{
+                async: true,
+                method: 'POST',
+                data: {question:JSON.stringify(dataObj)},
+                dataType: 'json',
+                error: function (x, h, r) {
+                    alert('网络错误，请检查您的网络连接');
+                },
+                success: function (data) {
+                    alert("保存成功");
+                    $("form[name=examForm] input[type=reset]").trigger("click");
+                    console.log('请求成功：' + JSON.stringify(data));
+                }
+            })
+        }
+    };
+
+
+    $(function () {
+        $("form[name=examForm] button[name=saveBtn]").click(function () {
+            exam.save();
+        });
+    });
+</script>
+</body>
+</html>

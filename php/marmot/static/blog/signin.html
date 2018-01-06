@@ -1,0 +1,5 @@
+<script src="../js/lib/nunjucks.js"></script>
+<script>
+  nunjucks.configure('/static/blog/views', { autoescape: true });
+  document.write(nunjucks.render('signin.html', {nav: 'index'})); 
+</script>
