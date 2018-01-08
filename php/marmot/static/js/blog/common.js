@@ -39,7 +39,7 @@ var BlogCommon = {
     },
     stringify: function(data) {
         var value = "";
-        for (prop in data) {
+        for (var prop in data) {
             value += prop + "=" + data[prop] + "&";
         }
         return value.substr(0, value.length - 1);
@@ -71,10 +71,11 @@ var BlogCommon = {
         if(model.async == undefined){
             model.async = true;
         }
+        console.log(newReq);
         return $.ajax({
             url: url,
             type: 'GET',
-            data: JSON.stringify(newReq),
+            data: BlogCommon.stringify(newReq),
             crossDomain: true,
             dataType: model.type || 'json',
             cache: true,
@@ -208,3 +209,16 @@ BlogCommon.is_weixin = function() {
         return false
     }
 };
+
+BlogCommon.logout = function(){
+    BlogCommon.cookie.del("ticket");
+    location.reload();
+}
+
+//登录检查
+console.log(BlogCommon.cookie.get("ticket"));
+if(BlogCommon.cookie.get("ticket") && BlogCommon.cookie.get("ticket") != undefined){
+    $('#manage_link').html('<a href="/static/blog/addarticle.html">添加日志</a> | <a href="/static/blog/articlelist.html">管理日志</a>| <a href="javascript:BlogCommon.logout();">退出</a>');
+}else{
+    $('#manage_link').html('<a href="/static/blog/signin.html">登录</a>|<a href="/static/blog/signup.html">注册</a>');
+}

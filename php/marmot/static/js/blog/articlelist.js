@@ -19,8 +19,8 @@ var fnArticle = {
         });
     },
     list: function(){
-        var page = BlogCommon.UrlGet['page'];
-        var pagesize = BlogCommon.UrlGet['pagesize'];
+        var page = BlogCommon.UrlGet()['page'];
+        var pagesize = BlogCommon.UrlGet()['pagesize'] || 20;
         var data = {
             url: '/api/article/list',
             params: {
@@ -45,6 +45,21 @@ var fnArticle = {
                     html += '</tr>';
                 }
                 $('#rows_tbody').html(html);
+
+                if(parseInt(json.entity.currentPage)>1){
+                    $('#prev').attr("href", "articlelist.html?page=" + (parseInt(json.entity.currentPage)-1));
+                    $('#next').removeClass('disabled');
+                }else{
+                    $('#prev').attr("href", "javascript:void(0)");
+                    $('#prev').addClass('disabled');
+                }
+                if(parseInt(json.entity.currentPage)<parseInt(json.entity.totalPages)){
+                    $('#next').attr("href", "articlelist.html?page=" + (parseInt(json.entity.currentPage)+1));
+                    $('#next').removeClass('disabled');
+                }else{
+                    $('#next').attr("href", "javascript:void(0)");
+                    $('#next').addClass('disabled');
+                }
             }else{
                 BlogCommon.showErr(
                     $('body'), 

@@ -107,35 +107,35 @@ Class Model{
     /**
      * 删除
      */
-     public function deleteObj($id){
+    public function deleteObj($id){
         $condition = " `" . $this->primaryKey ."` = ? ";
         $valueAry = array($id);
         return $this->delete($condition, $valueAry);
-     }
+    }
 
-     /**
-      * 更新
-      */
-     public function updateObj($objAry){
+    /**
+     * 更新
+    */
+    public function updateObj($objAry){
         $condition = " `" . $this->primaryKey ."` = ? ";
         $conditionValAry = array($objAry[$this->primaryKey]);
         unset($objAry[$this->primaryKey]);
         return $this->update($condition, $conditionValAry, $objAry);
-     }
+    }
 
-     /**
-      * 加载信息
-      */
-     public function getObjByPrimaryKey($id){
+    /**
+     * 加载信息
+    */
+    public function getObjByPrimaryKey($id){
         return $this->getOne("SELECT * FROM " . $this->table . " where `". $this->primaryKey ."` = ? ", array($id));
-     }
+    }
 
-     public function saveObj($objAry){
+    public function saveObj($objAry){
         if( isset($objAry[$this->primaryKey]) && !empty($objAry[$this->primaryKey]) ){
             return $this->updateObj($objAry);
         }else{
             return $this->addObj($objAry);
         }
-     }
+    }
 
 }

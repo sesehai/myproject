@@ -7,6 +7,8 @@ use core\Controller;
 use core\Request;
 use core\Response;
 use model\Articles;
+use model\Tags;
+use model\Tagmaps;
 
 class ArticleController extends Controller{
 
@@ -17,9 +19,10 @@ class ArticleController extends Controller{
         $user = $this->_checkToken();
         $id = Request::post('id');
         $title = Request::post('title');
+        $tags = Request::post('tags');
         $description = Request::post('description');
         $content = Request::post('content');
-        if(empty($title) || empty($content) || empty($description)){
+        if(empty($title) || empty($tags) || empty($content) || empty($description)){
             Response::json(array(), 2000, '请填写完整！');
         }
         $articlesObj = new Articles();
@@ -38,6 +41,18 @@ class ArticleController extends Controller{
         $article['utime'] = date('Y-m-d H:i:s');
 
         if($articlesObj->saveObj($article)){
+            // 添加标签
+            $tagsAry = explode(',', $tags);
+            $tagsObj = new Tags();
+            $tagmapsObj = new Tagmaps();
+            if(empty($article['id'])){
+                $article = $articlesObj->getArticle($article);
+            }
+            foreach($tagsAry as $tag){
+                $tagAry = array('name'=>$tag);
+                $tagAry = $tagsObj->saveTag($tagAry);
+                $tagmapsObj->save($article['id'], $tagAry['id']);
+            }
             Response::json(array(), 200, "保存成功！");
         }else{
             Response::json(array(), 300, "保存失败！");
@@ -69,7 +84,7 @@ class ArticleController extends Controller{
     public function detailAction(){
         $id = Request::get('id');
         $articlesObj = new Articles();
-        $article = $articlesObj->getObjByPrimaryKey($id);
+        $article = $articlesObj->getDetail($id);
         Response::json($article, 200, "查询成功！");
     }
 
@@ -84,23 +99,5 @@ class ArticleController extends Controller{
         }else{
             Response::json(array(), 300, "删除失败！");
         } 
-    }
-
-    /**
-     * 首页
-     */
-    public function indexAction(){
-        $page = Request::get('page');
-        if(empty($page) || $page < 0){
-            $page = 1;
-        }
-        $pagesize = Request::get('pagesize');
-        if(empty($pagesize) || $pagesize < 0){
-            $pagesize = 10;
-        }
-        
-        $articlesObj = new Articles();
-        $result = $articlesObj->list($page, $pagesize);
-        Response::json($result, 200, "查询成功！");
     }
 }

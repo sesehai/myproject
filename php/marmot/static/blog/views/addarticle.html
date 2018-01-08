@@ -16,15 +16,21 @@
                 </div>
               </div>
               <div class="form-group row">
+                  <label for="title" class="col-sm-2 col-form-label">标签</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="tags" id="tags" placeholder="标签:多个标签使用英文逗号(,)分隔，例如:生活,工作">
+                  </div>
+                </div>
+              <div class="form-group row">
                 <label for="description" class="col-sm-2 col-form-label">摘要</label>
                 <div class="col-sm-10">
-                  <textarea rows="5" class="form-control" name="description" id="description" placeholder="摘要"></textarea>
+                  <textarea rows="2" class="form-control" name="description" id="description" placeholder="摘要"></textarea>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="content" class="col-sm-2 col-form-label">内容</label>
+                <label for="content" id="label_content" class="col-sm-2 col-form-label">内容</label>
                 <div class="col-sm-10">
-                  <textarea rows="12" class="form-control" name="content" id="content" placeholder="内容"></textarea>
+                    <textarea rows="12" class="form-control" name="content" id="content" placeholder="内容"></textarea>
                 </div>
               </div>
               <div class="form-group row">
@@ -51,6 +57,9 @@
 <script src="../js/lib/jquery.md5.js" ></script>
 <script src="../js/lib/popper.min.js"></script>
 <script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/lib/mdeditor/marked.js"></script>
+<script src="../js/lib/mdeditor/editor.js"></script>
+<link rel="stylesheet" href="../js/lib/mdeditor/editor.css" />
 <script src="../js/blog/common.js"></script>
 <script src="../js/blog/addarticle.js"></script>
 {% endblock %}

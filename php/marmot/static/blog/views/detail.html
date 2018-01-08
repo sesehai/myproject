@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <main role="main" class="container">
+
+      <div class="row">
+
+        <div class="col-sm-12 blog-main">
+            <div class="blog-post">
+                <h2 class="blog-post-title" id="title">Sample blog post</h2>
+                <p class="blog-post-meta" id="create_time">January 1, 2014 by <a href="#" id="user_name">Mark</a></p>
+      
+                <div id="content">
+
+                </div>
+                <p id="tags">
+
+                </p>
+
+                <nav class="blog-pagination">
+                  <a id="prev" class="btn btn-outline-primary" href="#">旧的</a>
+                  <a id="next" class="btn btn-outline-secondary disabled" href="#">新的</a>
+                </nav>
+
+        </div><!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-sm-auto blog-sidebar">
+         
+        </aside><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </main><!-- /.container -->
+{% endblock %}
+
+{% block body_js %}
+
+<script src="../js/lib/jquery-3.2.1.js" ></script>
+<script src="../js/lib/jquery.md5.js" ></script>
+<script src="../js/lib/popper.min.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/lib/mdeditor/marked.js"></script>
+<script src="../js/blog/common.js"></script>
+<script src="../js/blog/detail.js"></script>
+{% endblock %}

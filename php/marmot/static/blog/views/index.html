@@ -6,23 +6,25 @@
 
     <div class="row">
 
-      <div class="col-sm-8 blog-main" id="blog_list">
+      <div class="col-sm-8 blog-main">
+        <div  id="blog_list">
 
+        </div>
         <nav class="blog-pagination">
-          <a class="btn btn-outline-primary" href="#">Older</a>
-          <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+          <a id="prev" class="btn btn-outline-primary" href="#">旧的</a>
+          <a id="next" class="btn btn-outline-secondary disabled" href="#">新的</a>
         </nav>
 
       </div><!-- /.blog-main -->
 
       <aside class="col-sm-3 ml-sm-auto blog-sidebar">
         <div class="sidebar-module sidebar-module-inset">
-          <h4>About</h4>
-          <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+          <h4>关于</h4>
+          <p>微笑着敲键盘 <em>写写优美的诗句</em> 听着键盘清脆的声音.</p>
         </div>
         <div class="sidebar-module">
-          <h4>Archives</h4>
-          <ol class="list-unstyled">
+          <h4>归档</h4>
+          <ol class="list-unstyled" id="group">
             <li><a href="#">March 2014</a></li>
             <li><a href="#">February 2014</a></li>
             <li><a href="#">January 2014</a></li>
@@ -38,7 +40,7 @@
           </ol>
         </div>
         <div class="sidebar-module">
-          <h4>Elsewhere</h4>
+          <h4>地盘</h4>
           <ol class="list-unstyled">
             <li><a href="#">GitHub</a></li>
             <li><a href="#">Twitter</a></li>
@@ -59,5 +61,6 @@
 <script src="../js/lib/popper.min.js"></script>
 <script src="../js/lib/bootstrap.min.js"></script>
 <script src="../js/blog/common.js"></script>
+<script src="../js/lib/mdeditor/marked.js"></script>
 <script src="../js/blog/index.js"></script>
 {% endblock %}

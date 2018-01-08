@@ -1,6 +1,7 @@
 
 var ticket = BlogCommon.cookie.get('ticket') || BlogCommon.UrlGet()['ticket'] || '';
 var id = BlogCommon.UrlGet()['id'] || '';
+var editor;
 var fnArticle = {
     checkTicket: function(){
         var data = {
@@ -19,13 +20,14 @@ var fnArticle = {
             }
         });
     },
-    add: function(){
+    bind: function(){
         // commit
         $('#button_add').on('click', function(){
             var id = $('#id').val();
             var title = $('#title').val();
+            var tags = $('#tags').val();
             var description = $('#description').val();
-            var content = $('#content').val();
+            var content = editor.codemirror.getValue();
             if(title == ''){
                 BlogCommon.showErr(
                     $('#title'), 
@@ -33,6 +35,17 @@ var fnArticle = {
                         trigger: 'focus',
                         placement: 'top', // or bottom, left, right, and variations
                         title: "请填写标题"
+                    },
+                    1000
+                );
+                return;
+            }else if(tags == ''){
+                BlogCommon.showErr(
+                    $('#tags'), 
+                    {
+                        trigger: 'focus',
+                        placement: 'top', // or bottom, left, right, and variations
+                        title: "请填写标签"
                     },
                     1000
                 );
@@ -50,7 +63,7 @@ var fnArticle = {
                 return;
             }else if(content == ''){
                 BlogCommon.showErr(
-                    $('#content'), 
+                    $('#label_content'), 
                     {
                         trigger: 'focus',
                         placement: 'top', // or bottom, left, right, and variations
@@ -65,6 +78,7 @@ var fnArticle = {
                 params: {
                     id: id,
                     title: title,
+                    tags: tags,
                     description: description,
                     content: content
                 },
@@ -115,8 +129,9 @@ var fnArticle = {
             if(json.code == 200){
                 $('#title').val(json.entity.title);
                 $('#description').val(json.entity.description);
-                $('#content').val(json.entity.content);
+                editor.codemirror.setValue(json.entity.content);
                 $('#id').val(json.entity.id);
+                $('#tags').val(json.entity.tagStr);
             }else{
                 BlogCommon.showErr(
                     $('body'), 
@@ -135,9 +150,13 @@ var fnArticle = {
 $(
     function(){
         fnArticle.checkTicket();
-        fnArticle.add();
+        fnArticle.bind();
         if(id !== ''){
             fnArticle.detail(id);
         }
+        editor = new Editor({
+            element: document.getElementById('content')
+        });
+        editor.render();
     }
 );
